@@ -1,13 +1,20 @@
 package groupid.artifactid;
 
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-@Entity
+//Es una buen practica nombrar la entidad sino defines va ser la misma de la clase
+@Entity(name = "Student")
 public class Student {
     @Id
+    @SequenceGenerator(
+            name = "student_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE
+    )
     private Long id;
     @Basic
     private String firstName;
