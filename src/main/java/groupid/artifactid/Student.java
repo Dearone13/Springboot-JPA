@@ -3,23 +3,53 @@ package groupid.artifactid;
 
 import jakarta.persistence.*;
 
+import static jakarta.persistence.GenerationType.SEQUENCE;
+
 //Es una buen practica nombrar la entidad sino defines va ser la misma de la clase
 @Entity(name = "Student")
 public class Student {
     @Id
+    //Generador de secuencias con valores unicos
     @SequenceGenerator(
+            //Nombre del generador de secuencias
             name = "student_sequence",
+            //NOmbre de secuencias en la base de datos
             sequenceName = "student_sequence",
+            //Cantidad de valores a reservar=> Por detefecto son 50
             allocationSize = 1
     )
+    //Indica la estrategia de generación de valores de una clave primaria
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE
+            //Estrategia de generación de valores
+            strategy = SEQUENCE,
+            //Nombre del generador de secuencias
+            generator = "student_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
     )
     private Long id;
-    @Basic
+    @Column(
+            name = "first_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String firstName;
+    @Column(
+            name = "second_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String lastName;
+    @Column(
+            name = "email",
+            nullable = false,
+            columnDefinition = "TEXT",
+            unique = true
+    )
     private String email;
+    @Column(name = "age")
     private Integer age;
 
     public Student(Long id, String firstName, String lastName, String email, Integer age) {
