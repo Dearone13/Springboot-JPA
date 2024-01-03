@@ -10,7 +10,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Table(
         name = "student",
         uniqueConstraints = {
-                @UniqueConstraint(name = "student_email",columnNames = "email")
+                @UniqueConstraint(name = "student_email_unique",columnNames = "email")
         }
 )
 public class Student {
@@ -51,9 +51,10 @@ public class Student {
     @Column(
             name = "email",
             nullable = false,
-            columnDefinition = "TEXT",
+            columnDefinition = "TEXT"
             //Esto es una restricción de los datos para que sea unico
-            unique = true
+            //unique = true
+
     )
     private String email;
     //Utilizamos Data Source para la ultimate edition
