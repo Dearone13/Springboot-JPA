@@ -7,6 +7,12 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 
 //Es una buen practica nombrar la entidad sino defines va ser la misma de la clase
 @Entity(name = "Student")
+@Table(
+        name = "student",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "student_email",columnNames = "email")
+        }
+)
 public class Student {
     @Id
     //Generador de secuencias con valores unicos
@@ -46,11 +52,20 @@ public class Student {
             name = "email",
             nullable = false,
             columnDefinition = "TEXT",
+            //Esto es una restricción de los datos para que sea unico
             unique = true
     )
     private String email;
-    @Column(name = "age")
+    //Utilizamos Data Source para la ultimate edition
+    @Column(
+            name = "age",
+            nullable = false
+    )
     private Integer age;
+
+    public Student() {
+
+    }
 
     public Student(Long id, String firstName, String lastName, String email, Integer age) {
         this.id = id;
