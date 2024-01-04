@@ -15,7 +15,7 @@ public class ArtifactidApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(StudentRepository studentRepository){
 		return args -> {
-			Student maria = new Student();
+			Student maria = new Student("Maria","Gonzales","maria.gonzales@dearone.edu",21);
 			studentRepository.save(maria);
 		};
 	}
