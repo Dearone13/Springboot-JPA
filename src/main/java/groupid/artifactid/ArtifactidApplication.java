@@ -30,7 +30,7 @@ public class ArtifactidApplication {
 			System.out.println("NUmgit ero de estudinates");
 			//Devuelve el numero total de registros de una tabla
 			System.out.println(studentRepository.count());
-			
+
 		};
 
 	}
