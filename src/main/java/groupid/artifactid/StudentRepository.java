@@ -3,6 +3,8 @@ package groupid.artifactid;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
+
 public interface StudentRepository extends JpaRepository<Student,Long> {
     //En Spring Data JPA, la anotación @Query se utiliza para definir consultas
     // JPQL o SQL personalizadas en los métodos de los repositorios. Esto permite tener mayor flexibilidad
@@ -16,4 +18,12 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
     //Este parámetro debe ser proporcionado dinámicamente al momento de ejecutar la consulta.
 
     @Query("SELECT s FROM Student s WHERE s.email = ?1")
+
+    //Optional: Es una clase contenedora de Java que representa un valor que puede estar presente o ausente.
+    //<Student>: Indica que el valor que posiblemente contiene es de tipo Student, es decir, un objeto que representa a un estudiante.
+    //findStudentByEmail: Es el nombre del método.
+    //(String email): Es el parámetro que recibe el método, siendo email una variable de tipo String que
+    //representa el correo electrónico del estudiante a buscar.
+
+    Optional<Student> finStudentByEmail(String email);
 }
