@@ -19,7 +19,7 @@ public class ArtifactidApplication {
 		return args -> {
 			//Creo a ambos estudiantes
 			Student maria = new Student("Maria","Gonzales","maria.gonzales@dearone.edu",21);
-			//studentRepository.save(maria);
+			//studentRepository.save(mariagit);
 
 			Student pedro = new Student("Pedro","Hernandez","pedro.her@unimi.edu",21);
 			System.out.println("Agregando a maria y pedro");
