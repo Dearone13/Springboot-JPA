@@ -27,9 +27,10 @@ public class ArtifactidApplication {
 			//studentRepository.saveAll(List.of(maria,pedro));
 
 			//Numero de estudiantes
-			System.out.println("NUmero de estudinates");
+			System.out.println("NUmgit ero de estudinates");
 			//Devuelve el numero total de registros de una tabla
 			System.out.println(studentRepository.count());
+			
 		};
 
 	}
