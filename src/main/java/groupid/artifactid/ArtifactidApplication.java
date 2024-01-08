@@ -39,7 +39,7 @@ public class ArtifactidApplication {
 			);
 			System.out.println("Agregando a maria, maria2 y pedro");
 			//Guardamos una lista de entidades y List of es una lista inmutable
-			/studentRepository.saveAll(List.of(maria,maria2,pedro));
+			studentRepository.saveAll(List.of(maria,maria2,pedro));
 
 			//Numero de estudiantes
 			System.out.println("Numero de estudiantes");
