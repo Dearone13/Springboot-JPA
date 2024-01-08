@@ -18,18 +18,34 @@ public class ArtifactidApplication {
 	CommandLineRunner commandLineRunner(StudentRepository studentRepository){
 		return args -> {
 			//Creo a ambos estudiantes
-			Student maria = new Student("Maria","Gonzales","maria.gonzales@dearone.edu",21);
-			//studentRepository.save(mariagit);
+			Student maria = new Student(
+					"Maria",
+					"Gonzales",
+					"maria.gonzales@dearone.edu",
+					21
+			);
+			Student maria2 = new Student(
+					"Maria",
+					"Pedraita",
+					"maria.pedraita@dearone.edu",
+					25
+					);
 
-			Student pedro = new Student("Pedro","Hernandez","pedro.her@unimi.edu",21);
-			System.out.println("Agregando a maria y pedro");
+			Student pedro = new Student(
+					"Pedro",
+					"Hernandez",
+					"pedro.her@unimi.edu",
+					21
+			);
+			System.out.println("Agregando a maria, maria2 y pedro");
 			//Guardamos una lista de entidades y List of es una lista inmutable
-			//studentRepository.saveAll(List.of(maria,pedro));
+			/studentRepository.saveAll(List.of(maria,maria2,pedro));
 
 			//Numero de estudiantes
 			System.out.println("NUmgit ero de estudinates");
 			//Devuelve el numero total de registros de una tabla
 			System.out.println(studentRepository.count());
+
 
 		};
 
