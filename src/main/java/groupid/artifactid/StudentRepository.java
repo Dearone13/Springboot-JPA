@@ -30,7 +30,9 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
     //representa el correo electrónico del estudiante a buscar.
 
     Optional<Student> finStudentByEmail(String email);
-    @Query("SELECT s FROM Student s WHERE s.firstName =?1 AND s.age = ?2")
+    //Selecionar en la variable s de la tabla Studetn donde first_name sea igual al dato ingresado y edad sea mayor o
+    //igual
+    @Query("SELECT s FROM Student s WHERE s.firstName =?1 AND s.age >= ?2")
     List<Student> selectStudentWhereFirstNameAndAgeGreaterOrEqual(String firstName, Integer age );
 
 
