@@ -39,10 +39,18 @@ public class ArtifactidApplication {
 			);
 			System.out.println("Agregando a maria, maria2 y pedro");
 			//Guardamos una lista de entidades y List of es una lista inmutable
-			/studentRepository.saveAll(List.of(maria,maria2,pedro));
+			studentRepository.saveAll(List.of(maria,maria2,pedro));
 
-			//Numero de estudiantes
-			System.out.println("NUmero de estudinates");
+			//Encuentra estudiante por email
+			System.out.println("Encontrando estudiante por email");
+			studentRepository.finStudentByEmail("pedro.her@unimi.edu").ifPresentOrElse(System.out::println, ()-> System.out.println("Estudiante con email pedro.her@unimi.edu no encontrado"));
+			//Encuentra estudiante  por Nombre y edad sea mayor o igual
+			System.out.println("Encuentra estudinate por nombre y edad");
+			studentRepository.selectStudentWhereFirstNameAndAgeGreaterOrEqual("Maria",21).forEach(System.out::println);
+			System.out.println("Encuentra estudinate por nombre y edad de forma nativa");
+			studentRepository.selectStudentWhereFirstNameAndAgeGreaterOrEqualNative("Maria",21).forEach(System.out::println);
+			System.out.println("Borrando Maria2");
+			System.out.println(studentRepository.deleteStudentById(2L));
 
 		};
 
