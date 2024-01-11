@@ -5,10 +5,17 @@ import jakarta.persistence.*;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Entity(name = "StudentIdCard")
+//Mapeo de tabla de base de datos de objetos de student_id_card
 @Table(
         name = "student_id_card",
+        //Restricción de unidad
         uniqueConstraints = {
-                name = "student_id_card_number_unique",
+                //No se pueden guardar dos filas con el mismo nombre
+                @UniqueConstraint(
+                        name = "student_id_card_number_unique",
+                        //Las columnas deben ser unicas
+                        columnNames = "Card_number"
+                )
 
         }
 )
