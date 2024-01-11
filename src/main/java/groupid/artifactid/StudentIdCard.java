@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
+//Nombre de la entidad
 @Entity(name = "StudentIdCard")
 //Mapeo de tabla de base de datos de objetos de student_id_card
 @Table(

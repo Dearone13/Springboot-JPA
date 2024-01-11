@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import com.github.javafaker.Faker;
 
 import java.util.List;
 
@@ -15,42 +16,25 @@ public class ArtifactidApplication {
 		SpringApplication.run(ArtifactidApplication.class, args);
 	}
 	@Bean
-	CommandLineRunner commandLineRunner(StudentRepository studentRepository){
+	CommandLineRunner commandLineRunner(StudentRepository studentRepository, StudentIdCardRespository studentIdCardRespository){
 		return args -> {
-			//Creo a ambos estudiantes
-			Student maria = new Student(
-					"Maria",
-					"Gonzales",
-					"maria.gonzales@dearone.edu",
-					21
-			);
-			Student maria2 = new Student(
-					"Maria",
-					"Pedraita",
-					"maria.pedraita@dearone.edu",
-					25
-					);
+			//Para utlizar faker necesitamos agregarlo a dependencias
+			//Es el nombre de una biblioteca de código abierto que se utiliza para generar datos falsos o ficticios de forma rápida y sencilla.
+			Faker faker = new Faker();
+			//Generamos Primer Nombre
+			String firstName = faker.name().firstName();
+			//Generamos apellido
+			String lastName = faker.name().lastName();
+			//Generamos email
+			//Format: Metodo estatico der java que permite formatear una cadena de texto
+			//"%s" Significa el uso de variable, que en este caso son 2.
+			String email = String.format("%s.%s@dearone.edu",firstName,lastName);
+			//Se crea objeto student
+			Student student = new Student(firstName,lastName,email,faker.number().numberBetween(17,55));
+			//faker.number().numberBetween(17,55) -> Generea un numero aletorio entre 17 y 55
+			//Creamos StudentIdCard
 
-			Student pedro = new Student(
-					"Pedro",
-					"Hernandez",
-					"pedro.her@unimi.edu",
-					21
-			);
-			System.out.println("Agregando a maria, maria2 y pedro");
-			//Guardamos una lista de entidades y List of es una lista inmutable
-			studentRepository.saveAll(List.of(maria,maria2,pedro));
 
-			//Encuentra estudiante por email
-			System.out.println("Encontrando estudiante por email");
-			studentRepository.finStudentByEmail("pedro.her@unimi.edu").ifPresentOrElse(System.out::println, ()-> System.out.println("Estudiante con email pedro.her@unimi.edu no encontrado"));
-			//Encuentra estudiante  por Nombre y edad sea mayor o igual
-			System.out.println("Encuentra estudinate por nombre y edad");
-			studentRepository.selectStudentWhereFirstNameAndAgeGreaterOrEqual("Maria",21).forEach(System.out::println);
-			System.out.println("Encuentra estudinate por nombre y edad de forma nativa");
-			studentRepository.selectStudentWhereFirstNameAndAgeGreaterOrEqualNative("Maria",21).forEach(System.out::println);
-			System.out.println("Borrando Maria2");
-			System.out.println(studentRepository.deleteStudentById(2L));
 
 		};
 
