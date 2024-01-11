@@ -63,6 +63,14 @@ public class Student {
             nullable = false
     )
     private Integer age;
+    //Establece relación Uno A uno con la clase Student
+    @OneToOne(
+            //Mapea una relación inversa de clase student a StudentIdCard
+            mappedBy = "student",
+            //Relaciones huerfanas son eliminadas deben exitir ambas student y studentIdCard
+            orphanRemoval = true
+    )
+     private StudentIdCard studentIdCard;
 
     public Student() {
 

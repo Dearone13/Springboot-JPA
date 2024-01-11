@@ -57,6 +57,7 @@ public class StudentIdCard {
             //Crea una restricción de clave foranea en la base de datos
             foreignKey = @ForeignKey(name = "student_id_fk" )
     )
+    //Se genera relación son student_id_card
     private Student student;
 
     public StudentIdCard(String cardNumber) {

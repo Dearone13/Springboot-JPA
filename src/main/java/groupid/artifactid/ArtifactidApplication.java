@@ -31,8 +31,21 @@ public class ArtifactidApplication {
 			String email = String.format("%s.%s@dearone.edu",firstName,lastName);
 			//Se crea objeto student
 			Student student = new Student(firstName,lastName,email,faker.number().numberBetween(17,55));
+			System.out.println("Student: "+student.toString());
 			//faker.number().numberBetween(17,55) -> Generea un numero aletorio entre 17 y 55
 			//Creamos StudentIdCard
+			StudentIdCard studentIdCard = new StudentIdCard("123456789",student);
+			//Guardamos la entidad en la base de datos
+			System.out.println("Guardamos estudiante");
+			studentIdCardRespository.save(studentIdCard);
+			//Encontrar y imprimir por id 1 tipo Long
+			System.out.println("Encontramos estudiante de id 1");
+			studentIdCardRespository.findById(1L).ifPresent(System.out::println);
+			//Encontrar y imprimir por id 1 tipo Long
+			System.out.println("Encontramos estudiante de id 1 2.0");
+			studentIdCardRespository.findById(1L).ifPresent(System.out::println);
+			//Borrar por ID 1 tipo long
+			//studentIdCardRespository.deleteById(1L);
 
 
 
