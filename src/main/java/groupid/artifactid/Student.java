@@ -74,18 +74,6 @@ public class Student {
             orphanRemoval = true
     )
      private StudentIdCard studentIdCard;
-    @OneToMany(
-            //Nombre de la tabla a la que referencio la relación
-            mappedBy = "student",
-            //Ningun resgistro debe quedar huerfano en eliminación
-            orphanRemoval = true,
-            //PERSIST -> Se guarda entidad entidad principal tambien lo hace la relacionada
-            //REMOVE -> Se borra la entidad entidad principal tambien lo hace la relacionada
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
-            //LAZY -> Solo cargara la entidad cuando es necesario
-            fetch = FetchType.LAZY
-    )
-    private List<Book> books = new ArrayList<>();
 
     public Student() {
 
