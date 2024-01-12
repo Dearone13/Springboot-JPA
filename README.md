@@ -1,5 +1,5 @@
 
-<h1>Springboot-JPA y CrudRepository</h1>
+<h1>Springboot-JPA y ManytoOne</h1>
 <p >Utilizamos el CrudRepository en una relación uno a uno, además de utilizar
 la biblioteca faker para generar datos aleatorios</p>
 <h3>Resultado</h3>
