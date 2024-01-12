@@ -3,6 +3,9 @@ package groupid.artifactid;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 //Es una buen practica nombrar la entidad sino defines va ser la misma de la clase
@@ -71,6 +74,18 @@ public class Student {
             orphanRemoval = true
     )
      private StudentIdCard studentIdCard;
+    @OneToMany(
+            //Nombre de la tabla a la que referencio la relación
+            mappedBy = "student",
+            //Ningun resgistro debe quedar huerfano en eliminación
+            orphanRemoval = true,
+            //PERSIST -> Se guarda entidad entidad principal tambien lo hace la relacionada
+            //REMOVE -> Se borra la entidad entidad principal tambien lo hace la relacionada
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            //LAZY -> Solo cargara la entidad cuando es necesario
+            fetch = FetchType.LAZY
+    )
+    private List<Book> books = new ArrayList<>();
 
     public Student() {
 
@@ -121,6 +136,30 @@ public class Student {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+    //Metodo para agregar libro
+    public void addBook(Book book){
+        //Si la lista no contiene un libro
+        if(!this.books.contains(book)){
+            //Agrega el libro a la lista
+            this.books.add(book);
+            //Actuliza ela clase student
+            book.setStudent(this);
+        }
+    }
+    public void removeBook(Book book){
+        //Si encuentra libro
+        if (this.books.contains(book)){
+            //Elimina libro
+            this.books.remove(book);
+            //Pone nula el objeto student
+            book.setStudent(null);
+        }
+
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 
     @Override
