@@ -41,10 +41,15 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(
+            //Nombre de la llave
             name = "student_id",
+            //Que no sea de tipo nulo
             nullable = false,
+            //Referencia en la otra tabla de la columna id de entidad Student
             referencedColumnName = "id",
+            //Creamos llave foreana
             foreignKey = @ForeignKey(
+                    //nombre de la llave foreana
                     name = "student_book_fk"
             )
     )
