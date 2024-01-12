@@ -125,30 +125,6 @@ public class Student {
     public void setAge(Integer age) {
         this.age = age;
     }
-    //Metodo para agregar libro
-    public void addBook(Book book){
-        //Si la lista no contiene un libro
-        if(!this.books.contains(book)){
-            //Agrega el libro a la lista
-            this.books.add(book);
-            //Actuliza ela clase student
-            book.setStudent(this);
-        }
-    }
-    public void removeBook(Book book){
-        //Si encuentra libro
-        if (this.books.contains(book)){
-            //Elimina libro
-            this.books.remove(book);
-            //Pone nula el objeto student
-            book.setStudent(null);
-        }
-
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
 
     @Override
     public String toString() {
