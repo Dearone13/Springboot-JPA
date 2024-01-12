@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import com.github.javafaker.Faker;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -34,19 +36,31 @@ public class ArtifactidApplication {
 			Student student = new Student(firstName,lastName,email,faker.number().numberBetween(17,55));
 			System.out.println("Student: "+student.toString());
 			//faker.number().numberBetween(17,55) -> Generea un numero aletorio entre 17 y 55
+			System.out.println("Agregando libros");
+			student.addBook(new Book("Codigo Limpio", LocalDateTime.now().minusDays(4)));
+			//Agrega la fecha de 4 dias atras a partir del actual
+			student.addBook(new Book("El imperio final",LocalDateTime.now()));
+			//Agrega fecha actual
+			student.addBook(new Book("Spring boot JPA",LocalDateTime.now().minusYears(1)));
+			//Agrega un año menos a partir del actual
 			//Creamos StudentIdCard
+			System.out.println("Creando tarjeta de estudiante");
 			StudentIdCard studentIdCard = new StudentIdCard("123456789",student);
-			//Guardamos la entidad en la base de datos
-			System.out.println("Guardamos estudiante");
+			System.out.println("Actulizando estudinate de la tarjeta");
+			//Actualizamos StudentIdCard
 			studentIdCardRespository.save(studentIdCard);
-			//Encontrar y imprimir por id 1 tipo Long
-			System.out.println("Encontramos estudiante de id 1");
-			studentIdCardRespository.findById(1L).ifPresent(System.out::println);
-			//Encontrar y imprimir por id 1 tipo Long
-			System.out.println("Encontramos estudiante de id 1 2.0");
-			studentIdCardRespository.findById(1L).ifPresent(System.out::println);
-			//Borrar por ID 1 tipo long
-			//studentIdCardRespository.deleteById(1L);
+			student.setStudentIdCard(studentIdCard);
+			//Guardamos student en base de datos
+			System.out.println("Guardando estudinate");
+			studentRepository.save(student);
+			System.out.println("Mostrar libros prestrados al estudiante de id 1");
+			studentRepository.findById(1L).ifPresent(s ->{
+				System.out.println("Buscar libro lento");
+				List<Book> books = student.getBooks();
+				books.forEach(book -> {
+					System.out.println(s.getFirstName()+" prestado "+book.getBookName());
+				});
+			});
 
 
 

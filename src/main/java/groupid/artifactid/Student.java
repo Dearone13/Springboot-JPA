@@ -162,6 +162,10 @@ public class Student {
         return books;
     }
 
+    public void setStudentIdCard(StudentIdCard studentIdCard) {
+        this.studentIdCard = studentIdCard;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
