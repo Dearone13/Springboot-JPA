@@ -49,8 +49,15 @@ public class Enrolment {
         this.createdAt = createdAt;
     }
 
+    public Enrolment(Student student, Course course, LocalDateTime createdAt) {
+        this.student = student;
+        this.course = course;
+        this.createdAt = createdAt;
+    }
+
     public Enrolment() {
     }
+
 
     public EnrolmentId getId() {
         return id;
