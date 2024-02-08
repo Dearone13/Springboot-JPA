@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Data //getter, setter y toString
 @NoArgsConstructor // constructor sin parametros
@@ -28,5 +29,5 @@ public class Employee implements Serializable {
     private String firstName;
 
     @Column(name = "e_dateBorn")
-    private Date dateBorn;
+    private LocalDateTime dateBorn;
 }
