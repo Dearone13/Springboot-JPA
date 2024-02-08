@@ -19,21 +19,29 @@ public class App
         /*Creamos gestor de persistencia */
          emf = Persistence.createEntityManagerFactory("miPersistencia");
         manager = emf.createEntityManager();
+        startAll();
+        showAll();
+        manager.getTransaction().begin();
+        Employee e = manager.find(Employee.class,123L);
+        e.setFirstName("Carmensa");
+        e.setLastName("Bohorquez");
+        manager.getTransaction().commit();
+        //manager.merge()  //Mezcla los dos estados de las entidades si una deja de estra adminsitrada
+        showAll();
+        //Cuando hago un manager.close() la entidad deja de estar administrada
+    }
+
+    public static void startAll(){
         //Se nombra con el nombre de la clase
         List<Employee> employees = manager.createQuery("FROM Employee").getResultList();
         System.out.println("En esta base de datos hay: "+employees.size() +" empleados");
-        Employee e = new Employee(123L,"Karla","Suarez", new Date());
-        Employee e2 = new Employee(124L,"Martha","Hernandez", new Date());
-
-        //Transacción --> Es una unidad de trabajo que agrupa una serie de operaciones en la base de datos.
-        //Inicio la transacción de gestor de persistencia
+        Employee e = new Employee(123L,"Martinez","Karla", new Date());
+        e.setLastName("Guarnizo");
+        //Managed permite saber cuando hay cambios al instanciar la clase manager
+        //Empleado se vuelve un objeto de mitpo managed
         manager.getTransaction().begin();
-        //Guarda la instancia de la entidad en la base de datos
         manager.persist(e);
-        manager.persist(e2);
         manager.getTransaction().commit();
-        //Finaliza la transacción del gestor de persistencia
-        showAll();
     }
 
     public static void showAll(){
