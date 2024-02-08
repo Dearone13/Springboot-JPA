@@ -9,6 +9,7 @@
       <li><a href= "https://github.com/Dearone13/Springboot-JPA/tree/persisten">Entity, table y Entity manager</a></li>
        <li><a href= "https://github.com/Dearone13/Springboot-JPA/tree/InsertP">Transacción y persistencia de datos</a></li>
        <li><a href= "https://github.com/Dearone13/Springboot-JPA/tree/manaEnti">Managed Entities</a></li>
+       <li><a href= "https://github.com/Dearone13/Springboot-JPA/tree/merremo">Merge, remove y java-8 LocalDateTiem</a></li>
     </ul>
   </section>
   <section>
