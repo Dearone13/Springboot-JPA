@@ -7,7 +7,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
-@Data //getter, setter y toString
+@Getter //getter, setter y toString
+@Setter
 @NoArgsConstructor  // constructor sin parametros // con parametros
 @Entity
 @Table(name = "employees")
@@ -38,10 +39,20 @@ public class Employee implements Serializable {
     @Column(name = "e_dateBorn")
     private LocalDateTime dateBorn;
 
-    //@Transient
+    //En esta caso si solo se define de esta manera seria de tipo unidireccional
+    //Se creo un relación meramente unidireecional de empleado a dirección pero no de dirección a empleado
     @OneToOne(cascade = CascadeType.ALL)  // -->Relación de uno a uno con una clave foranea a tipo dirección, tambien si un entidad es creada en relación persiste y guarda
     @JoinColumn(name = "address_fk")  //-->Determina dueño del campo de tiempo dirección
     private Address address;
 
-
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "Code=" + Code +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", dateBorn=" + dateBorn +
+                ", address=" + address.getId() +
+                '}';
+    }
 }

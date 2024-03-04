@@ -1,20 +1,28 @@
 package com.hibernate.Model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-@Data  //Getter, setter, toString();
+import javax.persistence.*;
+
+@Getter //Getter, setter, toString();
+@Setter
 @NoArgsConstructor ///Constructor sin parametro
-@AllArgsConstructor //Constructor con parametros
+//@AllArgsConstructor //Constructor con parametros
+
+
 
 @Entity
 @Table(name = "address")
 public class Address {
+
+    public Address(Long id, String address, String section, String department, String country) {
+        this.id = id;
+        this.address = address;
+        this.section = section;
+        this.department = department;
+        this.country = country;
+    }
+
     @Id
     @Column(name = "id_address")
     private Long id;
@@ -29,6 +37,11 @@ public class Address {
 
     @Column(name = "country")
     private String country;
+
+    @Transient
+    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
+    private Employee employee;
+
 
 
 }
