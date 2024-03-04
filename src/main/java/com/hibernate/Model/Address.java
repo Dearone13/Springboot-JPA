@@ -38,7 +38,7 @@ public class Address {
     @Column(name = "country")
     private String country;
 
-    @Transient
+    //La relación de unoAuno se vuelve orden bidireccional y la carga de registros es de tipo lazy.
     @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
     private Employee employee;
 
