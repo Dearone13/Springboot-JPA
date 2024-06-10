@@ -13,7 +13,6 @@
        <li><a href= "https://github.com/Dearone13/Springboot-JPA/tree/oneToone">Relaciones UnoaUno</a></li>
        <li><a href= "https://github.com/Dearone13/Springboot-JPA/tree/oneTooneIn">Relaciones UnoaUno Bidireccionales</a></li>
        <li><a href= " https://github.com/Dearone13/Springboot-JPA/tree/oneTomany">Relaciones UnoaMuchos Bidireccionales</a></li>
-      
     </ul>
   </section>
   <section>
