@@ -11,6 +11,8 @@
         <!--Representar las clases-->
 
         <class>com.hibernate.Model.Employee</class>
+        <class>com.hibernate.Model.Author</class>
+        <class>com.hibernate.Model.Book</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
